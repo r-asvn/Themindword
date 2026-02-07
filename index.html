@@ -5,6 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Earn with @ashx | Piper Rockelle Campaign</title>
     <script src="https://unpkg.com/lucide@latest"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Syne:wght@800&display=swap" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;800&display=swap" rel="stylesheet">
     <style>
         :root {
@@ -14,7 +15,10 @@
             --card-bg: #16161a;
             --text: #ffffff;
             --text-dim: #a1a1aa;
+            --success: #2ecc71;
         }
+
+        html { scroll-behavior: smooth; }
 
         * {
             margin: 0;
@@ -30,7 +34,6 @@
             overflow-x: hidden;
         }
 
-        /* --- Background Animation --- */
         .gradient-blur {
             position: fixed;
             top: 0; left: 0; right: 0; bottom: 0;
@@ -45,7 +48,6 @@
             padding: 40px 20px;
         }
 
-        /* --- Header --- */
         header {
             text-align: center;
             padding: 60px 0;
@@ -63,22 +65,42 @@
             display: inline-block;
             margin-bottom: 20px;
         }
+h1 {
+    /* High-end "Syne" Font */
+    font-family: 'Syne', sans-serif;
+    font-size: clamp(2.5rem, 9vw, 4.5rem);
+    font-weight: 800;
+    line-height: 0.9;
+    letter-spacing: -3px; /* Tighter letters for a "Designer" look */
+    text-transform: uppercase;
+    margin-bottom: 15px;
 
-        h1 {
-            font-size: clamp(2.5rem, 8vw, 4rem);
-            font-weight: 800;
-            background: linear-gradient(to right, #fff, #ff3e81);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            margin-bottom: 10px;
-        }
+    /* Shimmering Animated Gradient */
+    background: linear-gradient(
+        120deg, 
+        #ffffff 20%, 
+        #ff3e81 40%, 
+        #7000ff 60%, 
+        #ffffff 80%
+    );
+    background-size: 200% auto;
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    animation: shine 4s linear infinite;
 
-        .subtitle {
-            color: var(--text-dim);
-            font-size: 1.2rem;
-        }
+    /* Subtle glow behind the text */
+    filter: drop-shadow(0 5px 15px rgba(255, 62, 129, 0.3));
+}
 
-        /* --- Sections --- */
+/* Keyframes for the text shimmer effect */
+@keyframes shine {
+    to {
+        background-position: 200% center;
+    }
+}
+
+        .subtitle { color: var(--text-dim); font-size: 1.2rem; }
+
         .section-card {
             background: var(--card-bg);
             border: 1px solid rgba(255, 255, 255, 0.05);
@@ -102,7 +124,6 @@
             color: var(--primary);
         }
 
-        /* --- Lists & Grids --- */
         .grid {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
@@ -124,7 +145,6 @@
             gap: 10px;
         }
 
-        /* --- Pricing & CTA --- */
         .pricing-box {
             background: linear-gradient(135deg, var(--primary), var(--secondary));
             text-align: center;
@@ -133,11 +153,7 @@
             margin-top: 40px;
         }
 
-        .price {
-            font-size: 3rem;
-            font-weight: 800;
-            display: block;
-        }
+        .price { font-size: 3rem; font-weight: 800; display: block; }
 
         .btn {
             display: inline-flex;
@@ -151,15 +167,23 @@
             font-weight: 700;
             margin-top: 20px;
             transition: 0.3s;
+            cursor: pointer;
+            border: none;
         }
 
-        .btn:hover {
-            opacity: 0.9;
-            transform: scale(1.05);
+        .btn:hover { opacity: 0.9; transform: scale(1.05); }
+
+        /* Full Width Action Buttons */
+        .action-btn {
+            width: 100%;
+            justify-content: center;
+            background: linear-gradient(45deg, var(--secondary), var(--primary));
+            color: white;
+            margin-top: 15px;
         }
 
         .drive-btn {
-            background: #2ecc71;
+            background: var(--success);
             color: white;
             padding: 8px 16px;
             border-radius: 8px;
@@ -170,19 +194,8 @@
             gap: 5px;
         }
 
-        /* --- Contact --- */
-        .contact-footer {
-            text-align: center;
-            padding-top: 40px;
-        }
-
-        .social-links {
-            display: flex;
-            justify-content: center;
-            gap: 30px;
-            margin-top: 20px;
-        }
-
+        .contact-footer { text-align: center; padding-top: 40px; }
+        .social-links { display: flex; justify-content: center; gap: 30px; margin-top: 20px; }
         .social-link {
             color: var(--text-dim);
             text-decoration: none;
@@ -192,10 +205,8 @@
             gap: 8px;
             transition: 0.3s;
         }
-
         .social-link:hover { color: var(--primary); }
 
-        /* --- Animations --- */
         @keyframes fadeInDown {
             from { opacity: 0; transform: translateY(-20px); }
             to { opacity: 1; transform: translateY(0); }
@@ -213,12 +224,14 @@
 
     <div class="container">
         <header>
-            <span class="badge">Earning Opportunity</span>
-            <h1>Start Earning with @ashx</h1>
+       <a href="https://www.instagram.com/ashxwork6" style="text-decoration: none;" target="_blank">
+    <span class="badge">Earning Opportunity</span>
+</a>
+            <h1>ASHXWORK</h1>
             <p class="subtitle">Join the Piper Rockelle fan network and get paid for views.</p>
         </header>
 
-        <section class="section-card">
+        <section id="get-started" class="section-card">
             <h2><i data-lucide="user-plus"></i> How to Get Started</h2>
             <div class="grid">
                 <div class="step-item">
@@ -245,18 +258,46 @@
             </div>
         </section>
 
-        <section class="section-card">
-            <h2><i data-lucide="video"></i> How to Post Reels</h2>
-            <ul>
-                <li><i data-lucide="hard-drive"></i> Get clips: <a href="#" class="drive-btn"><i data-lucide="external-link" size="14"></i> Google Drive</a></li>
-                <li><i data-lucide="at-sign"></i> Tag <strong>@piperrockelle</strong> in every reel</li>
-                <li><i data-lucide="hash"></i> Use <strong>#PiperRockelle</strong></li>
-                <li><i data-lucide="map-pin"></i> Set Location: <strong>USA (America)</strong></li>
-            </ul>
-            <div style="background: rgba(0,0,0,0.2); padding: 15px; border-radius: 12px; margin-top: 20px;">
-                <p style="font-size: 0.8rem; color: var(--text-dim); margin-bottom: 5px;">CAPTION FORMAT:</p>
-                <code>Download Here (Drive Link <i data-lucide="download" size="12"></i>)</code>
-            </div>
+        <section class="section-card" style="border: 1px solid var(--secondary);">
+            <h2><i data-lucide="graduation-cap"></i> Watch & Learn how post</h2>
+            <p style="color: var(--text-dim); margin-bottom: 15px;">New users can learn the full strategy and get mentorship from this ID. Access the guide below:</p>
+            <a href="https://www.instagram.com/piper.rockelle_88?igsh=MWR4OWl1a2RueXZrZw%3D%3D" target="_blank" class="btn action-btn">
+                <i data-lucide="book-open"></i> Access Learning Drive
+            </a>
+        </section>
+
+      <section class="section-card">
+    <h2><i data-lucide="video"></i> How to Post Reels</h2>
+    <ul>
+        <li><i data-lucide="at-sign"></i> Tag <strong>@piperrockelle</strong> in every reel</li>
+        <li><i data-lucide="hash"></i> Use <strong>#PiperRockelle</strong></li>
+        <li><i data-lucide="map-pin"></i> Set Location: <strong>USA (America)</strong></li>
+        <li> <li>
+    <i data-lucide="download"></i>Download Clips & Caption: 
+            <a href="https://t.me/ashxwork6" class="drive-btn" target="_blank" style="
+    background: linear-gradient(135deg, #0088cc, #ed006b);
+    border-radius: 30px; 
+    padding: 8px 18px; 
+    margin-left: 5px;
+    box-shadow: 0 4px 15px rgba(0, 136, 204, 0.3);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    transition: 0.3s ease;
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;">
+    <i data-lucide="send" size="16"></i>
+    <span style="font-weight: 700; letter-spacing: 0.5px;">TELEGRAM</span>
+</a>
+        </li>
+    </ul>
+</section>
+
+        <section class="section-card" style="border: 1px solid var(--primary);">
+            <h2><i data-lucide="clipboard-check"></i> Account Registration</h2>
+            <p style="color: var(--text-dim); margin-bottom: 15px;">Mandatory: Please fill up this form <strong>after uploading your first reel</strong> to register for payments.</p>
+            <a href="https://docs.google.com/forms/d/e/1FAIpQLSd6OBx1BTedoyIG2uNcAeo5MXDFGf3rc7YesofBJp0qIhQfjA/viewform?usp=dialog" target="_blank" class="btn action-btn" style="background: white; color: var(--primary);">
+                <i data-lucide="file-text"></i> Fill Submission Form
+            </a>
         </section>
 
         <section class="section-card" style="border-left: 4px solid #f1c40f;">
@@ -273,29 +314,28 @@
             <p style="text-transform: uppercase; letter-spacing: 2px; font-weight: 600;">Payout Rate</p>
             <span class="price">₹8000</span>
             <p>per 1 Million Views</p>
-            <a href="https://instagram.com" class="btn">Start Now <i data-lucide="arrow-right"></i></a>
+            <a href="#get-started" class="btn">Start Now <i data-lucide="arrow-up"></i></a>
         </section>
 
         <footer class="contact-footer">
-            <h3>Support & Inquiries</h3>
-            <div class="social-links">
-                <a href="https://instagram.com" class="social-link">
-                    <i data-lucide="instagram" size="32"></i>
-                    <span>Instagram</span>
-                </a>
-                <a href="mailto:support@example.com" class="social-link">
-                    <i data-lucide="mail" size="32"></i>
-                    <span>Email Support</span>
-                </a>
-            </div>
+          <h3>Support & Inquiries</h3>
+<div class="social-links">
+    <a href="https://www.instagram.com/ashxwork6" class="social-link" target="_blank" rel="noopener noreferrer">
+        <i data-lucide="instagram" size="32"></i>
+        <span>ashxwork6</span>
+    </a>
+
+    <a href="mailto:ashxwork6@gmail.com?subject=Inquiry%20about%20Piper%20Rockelle%20Campaign&body=Hello%20Ashx,%0D%0A%0D%0AI%20would%20like%20to%20know%20more%20about..." class="social-link">
+    <i data-lucide="mail" size="32"></i>
+    <span>ashxwork6@gmail.com</span>
+</a>
+</div>
         </footer>
     </div>
 
     <script>
-        // Initialize Lucide Icons
         lucide.createIcons();
 
-        // Simple Fade-in animation on scroll
         const observerOptions = { threshold: 0.1 };
         const observer = new IntersectionObserver((entries) => {
             entries.forEach(entry => {
