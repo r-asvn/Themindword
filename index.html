@@ -3,361 +3,315 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Modern Navbar</title>
-    <script src="https://cdn.tailwindcss.com"></script>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&display=swap" rel="stylesheet">
+    <title>Earn with @ashx | Piper Rockelle Campaign</title>
+    <script src="https://unpkg.com/lucide@latest"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;800&display=swap" rel="stylesheet">
     <style>
-        body { font-family: 'Inter', sans-serif; }
+        :root {
+            --primary: #ff3e81; /* Vibrant Pink */
+            --secondary: #7000ff; /* Electric Purple */
+            --bg: #0a0a0c;
+            --card-bg: #16161a;
+            --text: #ffffff;
+            --text-dim: #a1a1aa;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Inter', sans-serif;
+        }
+
+        body {
+            background-color: var(--bg);
+            color: var(--text);
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
+
+        /* --- Background Animation --- */
+        .gradient-blur {
+            position: fixed;
+            top: 0; left: 0; right: 0; bottom: 0;
+            background: radial-gradient(circle at 10% 20%, rgba(255, 62, 129, 0.1) 0%, transparent 40%),
+                        radial-gradient(circle at 90% 80%, rgba(112, 0, 255, 0.1) 0%, transparent 40%);
+            z-index: -1;
+        }
+
+        .container {
+            max-width: 1000px;
+            margin: 0 auto;
+            padding: 40px 20px;
+        }
+
+        /* --- Header --- */
+        header {
+            text-align: center;
+            padding: 60px 0;
+            animation: fadeInDown 1s ease;
+        }
+
+        .badge {
+            background: rgba(255, 62, 129, 0.1);
+            color: var(--primary);
+            padding: 8px 16px;
+            border-radius: 20px;
+            font-size: 0.9rem;
+            font-weight: 600;
+            border: 1px solid var(--primary);
+            display: inline-block;
+            margin-bottom: 20px;
+        }
+
+        h1 {
+            font-size: clamp(2.5rem, 8vw, 4rem);
+            font-weight: 800;
+            background: linear-gradient(to right, #fff, #ff3e81);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            margin-bottom: 10px;
+        }
+
+        .subtitle {
+            color: var(--text-dim);
+            font-size: 1.2rem;
+        }
+
+        /* --- Sections --- */
+        .section-card {
+            background: var(--card-bg);
+            border: 1px solid rgba(255, 255, 255, 0.05);
+            border-radius: 24px;
+            padding: 40px;
+            margin-bottom: 30px;
+            transition: transform 0.3s ease;
+        }
+
+        .section-card:hover {
+            transform: translateY(-5px);
+            border-color: rgba(255, 62, 129, 0.3);
+        }
+
+        h2 {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            font-size: 1.8rem;
+            margin-bottom: 25px;
+            color: var(--primary);
+        }
+
+        /* --- Lists & Grids --- */
+        .grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 20px;
+        }
+
+        .step-item {
+            background: rgba(255, 255, 255, 0.03);
+            padding: 20px;
+            border-radius: 16px;
+            border-left: 4px solid var(--secondary);
+        }
+
+        ul { list-style: none; }
+        li {
+            margin-bottom: 12px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        /* --- Pricing & CTA --- */
+        .pricing-box {
+            background: linear-gradient(135deg, var(--primary), var(--secondary));
+            text-align: center;
+            padding: 50px;
+            border-radius: 24px;
+            margin-top: 40px;
+        }
+
+        .price {
+            font-size: 3rem;
+            font-weight: 800;
+            display: block;
+        }
+
+        .btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            background: white;
+            color: black;
+            padding: 14px 28px;
+            border-radius: 12px;
+            text-decoration: none;
+            font-weight: 700;
+            margin-top: 20px;
+            transition: 0.3s;
+        }
+
+        .btn:hover {
+            opacity: 0.9;
+            transform: scale(1.05);
+        }
+
+        .drive-btn {
+            background: #2ecc71;
+            color: white;
+            padding: 8px 16px;
+            border-radius: 8px;
+            text-decoration: none;
+            font-size: 0.9rem;
+            display: inline-flex;
+            align-items: center;
+            gap: 5px;
+        }
+
+        /* --- Contact --- */
+        .contact-footer {
+            text-align: center;
+            padding-top: 40px;
+        }
+
+        .social-links {
+            display: flex;
+            justify-content: center;
+            gap: 30px;
+            margin-top: 20px;
+        }
+
+        .social-link {
+            color: var(--text-dim);
+            text-decoration: none;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 8px;
+            transition: 0.3s;
+        }
+
+        .social-link:hover { color: var(--primary); }
+
+        /* --- Animations --- */
+        @keyframes fadeInDown {
+            from { opacity: 0; transform: translateY(-20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        @media (max-width: 600px) {
+            .section-card { padding: 25px; }
+            h1 { font-size: 2.5rem; }
+        }
     </style>
 </head>
-<body class="bg-gradient-to-r from-[#064e3b] to-black min-h-screen">
+<body>
 
-    <nav class="fixed top-0 left-0 w-full z-50 p-4 md:p-6">
-        <div class="max-w-7xl mx-auto flex items-center justify-between px-6 py-3 bg-white/5 backdrop-blur-xl border border-white/10 rounded-2xl shadow-[0_8px_32px_0_rgba(0,0,0,0.37)]">
-            
-            <div class="text-white font-bold text-2xl tracking-tighter cursor-pointer group">
-                MindeWord<span class="text-emerald-400 group-hover:animate-pulse">.</span>
+    <div class="gradient-blur"></div>
+
+    <div class="container">
+        <header>
+            <span class="badge">Earning Opportunity</span>
+            <h1>Start Earning with @ashx</h1>
+            <p class="subtitle">Join the Piper Rockelle fan network and get paid for views.</p>
+        </header>
+
+        <section class="section-card">
+            <h2><i data-lucide="user-plus"></i> How to Get Started</h2>
+            <div class="grid">
+                <div class="step-item">
+                    <strong>1. Create Fan Page</strong>
+                    <p style="font-size: 0.85rem; color: var(--text-dim); margin-top: 5px;">
+                        Examples: @piperrockelle.daily, @piperrockelle.fp
+                    </p>
+                </div>
+                <div class="step-item">
+                    <strong>2. Follow & Tag</strong>
+                    <p style="font-size: 0.85rem; color: var(--text-dim); margin-top: 5px;">
+                        Follow @piperrockelle and tag them in your bio.
+                    </p>
+                </div>
             </div>
+            <div style="margin-top: 25px;">
+                <strong>3. Optimize Profile:</strong>
+                <ul style="margin-top: 10px; display: grid; grid-template-columns: 1fr 1fr;">
+                    <li><i data-lucide="check-circle" size="18"></i> Catchy Username</li>
+                    <li><i data-lucide="check-circle" size="18"></i> Clean Name</li>
+                    <li><i data-lucide="check-circle" size="18"></i> Pro Bio</li>
+                    <li><i data-lucide="check-circle" size="18"></i> HD Profile Picture</li>
+                </ul>
+            </div>
+        </section>
 
-            <ul class="hidden md:flex items-center gap-10 text-gray-300 font-medium">
-                <li class="relative group cursor-pointer transition-all duration-300 hover:text-white">
-                    <a href="#">Home</a>
-                    <span class="absolute -bottom-1 left-0 w-0 h-0.5 bg-emerald-400 transition-all duration-500 ease-out group-hover:w-full"></span>
-                </li>
-                <li class="relative group cursor-pointer transition-all duration-300 hover:text-white">
-                    <a href="#">About</a>
-                    <span class="absolute -bottom-1 left-0 w-0 h-0.5 bg-emerald-400 transition-all duration-500 ease-out group-hover:w-full"></span>
-                </li>
-                <li class="relative group cursor-pointer transition-all duration-300 hover:text-white">
-                    <a href="#">Post</a>
-                    <span class="absolute -bottom-1 left-0 w-0 h-0.5 bg-emerald-400 transition-all duration-500 ease-out group-hover:w-full"></span>
-                </li>
-                <li class="relative group cursor-pointer transition-all duration-300 hover:text-white">
-                    <a href="#">Reels</a>
-                    <span class="absolute -bottom-1 left-0 w-0 h-0.5 bg-emerald-400 transition-all duration-500 ease-out group-hover:w-full"></span>
-                </li>
+        <section class="section-card">
+            <h2><i data-lucide="video"></i> How to Post Reels</h2>
+            <ul>
+                <li><i data-lucide="hard-drive"></i> Get clips: <a href="#" class="drive-btn"><i data-lucide="external-link" size="14"></i> Google Drive</a></li>
+                <li><i data-lucide="at-sign"></i> Tag <strong>@piperrockelle</strong> in every reel</li>
+                <li><i data-lucide="hash"></i> Use <strong>#PiperRockelle</strong></li>
+                <li><i data-lucide="map-pin"></i> Set Location: <strong>USA (America)</strong></li>
             </ul>
-
-            <div class="hidden md:block">
-                <button class="px-7 py-2.5 bg-emerald-500 hover:bg-emerald-400 text-black font-bold rounded-xl transition-all duration-300 transform hover:scale-105 active:scale-95 cursor-pointer shadow-lg shadow-emerald-500/20">
-                    Contact
-                </button>
+            <div style="background: rgba(0,0,0,0.2); padding: 15px; border-radius: 12px; margin-top: 20px;">
+                <p style="font-size: 0.8rem; color: var(--text-dim); margin-bottom: 5px;">CAPTION FORMAT:</p>
+                <code>Download Here (Drive Link <i data-lucide="download" size="12"></i>)</code>
             </div>
+        </section>
 
-            <button id="menu-btn" class="md:hidden text-white focus:outline-none cursor-pointer">
-                <svg xmlns="http://www.w3.org/2000/svg" class="h-8 w-8 transition-transform duration-300" id="menu-icon" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16m-7 6h7" />
-                </svg>
-            </button>
-        </div>
-
-        <div id="mobile-menu" class="hidden md:hidden mt-4 bg-black/80 backdrop-blur-2xl border border-white/10 rounded-2xl p-6 transition-all duration-500 ease-in-out opacity-0 translate-y-[-20px]">
-            <ul class="flex flex-col gap-5 text-gray-300 text-lg">
-                <li class="hover:text-emerald-400 cursor-pointer transition-colors">Home</li>
-                <li class="hover:text-emerald-400 cursor-pointer transition-colors">About</li>
-                <li class="hover:text-emerald-400 cursor-pointer transition-colors">Post</li>
-                <li class="hover:text-emerald-400 cursor-pointer transition-colors">Reels</li>
-                <li class="pt-4">
-                    <button class="w-full py-3 bg-emerald-500 text-black font-bold rounded-xl">Contact</button>
-                </li>
+        <section class="section-card" style="border-left: 4px solid #f1c40f;">
+            <h2 style="color: #f1c40f;"><i data-lucide="shield-alert"></i> Campaign Rules</h2>
+            <ul>
+                <li><i data-lucide="eye-off"></i> Do not hide likes, shares, or views.</li>
+                <li><i data-lucide="users"></i> No fake engagement (No bots).</li>
+                <li><i data-lucide="copy-slash"></i> Do not repeat the same clips on one account.</li>
             </ul>
-        </div>
-    </nav>
-    <div class="flex flex-col items-center justify-center h-screen text-center px-4">
-        <h1 class="text-6xl md:text-8xl font-black text-white/20 select-none">ELEGANCE</h1>
-        <p class="text-emerald-400/50 mt-4 tracking-widest uppercase">Scroll to see the glass effect</p>
-    </div>
-    <section class="relative pt-32 pb-20 px-6 overflow-hidden">
-    <div class="max-w-7xl mx-auto grid md:grid-cols-2 gap-12 items-center">
-        
-        <div class="relative group cursor-pointer">
-            <div class="absolute -inset-4 bg-emerald-500/20 rounded-full blur-3xl group-hover:bg-emerald-500/30 transition duration-700"></div>
-            
-            <div class="relative rounded-3xl overflow-hidden border border-white/10 shadow-2xl transform transition duration-500 hover:scale-[1.02]">
-                <img src="https://images.unsplash.com/photo-1506126613408-eca07ce68773?auto=format&fit=crop&q=80&w=800" 
-                     alt="The Mind Word" 
-                     class="w-full h-[500px] object-cover opacity-80 group-hover:opacity-100 transition duration-500">
-                
-                <div class="absolute bottom-6 left-6 right-6 p-6 bg-black/60 backdrop-blur-lg border border-white/10 rounded-2xl">
-                    <p class="text-emerald-400 font-bold text-xl italic">"Healing is not linear."</p>
-                    <p class="text-gray-400 text-sm mt-1">@themindword_</p>
-                </div>
-            </div>
-        </div>
+        </section>
 
-        <div class="space-y-8">
-            <div class="space-y-4">
-                <h3 class="text-emerald-400 font-semibold tracking-[0.2em] uppercase text-sm">Deep Dive into the Mind</h3>
-                <h2 class="text-4xl md:text-6xl font-bold text-white leading-tight">
-                    Understanding the <br>
-                    <span class="text-transparent bg-clip-text bg-gradient-to-r from-emerald-400 to-white">Human Spirit.</span>
-                </h2>
-            </div>
+        <section class="pricing-box">
+            <i data-lucide="trending-up" size="48"></i>
+            <p style="text-transform: uppercase; letter-spacing: 2px; font-weight: 600;">Payout Rate</p>
+            <span class="price">₹8000</span>
+            <p>per 1 Million Views</p>
+            <a href="https://instagram.com" class="btn">Start Now <i data-lucide="arrow-right"></i></a>
+        </section>
 
-            <p class="text-gray-300 text-lg leading-relaxed">
-                Welcome to <span class="text-white font-semibold">The Mind Word</span>. We are dedicated to exploring the intricate patterns of psychology, mental health, and the journey of self-healing. Our mission is to provide words that resonate with your soul and help you navigate the complexities of life.
-            </p>
-
-            <div class="grid grid-cols-2 gap-6 pt-4">
-                <div class="p-4 rounded-2xl bg-white/5 border border-white/10 hover:border-emerald-500/50 transition duration-300">
-                    <h4 class="text-2xl font-bold text-white">Mindset</h4>
-                    <p class="text-gray-400 text-sm">Rewiring how you think and perceive.</p>
-                </div>
-                <div class="p-4 rounded-2xl bg-white/5 border border-white/10 hover:border-emerald-500/50 transition duration-300">
-                    <h4 class="text-2xl font-bold text-white">Growth</h4>
-                    <p class="text-gray-400 text-sm">Practical steps for your mental journey.</p>
-                </div>
-            </div>
-
-            <div class="pt-6">
-                <a href="https://www.instagram.com/themindword_/" target="_blank" class="inline-flex items-center gap-3 px-8 py-4 bg-white text-black font-bold rounded-2xl hover:bg-emerald-400 transition-all duration-300 transform hover:translate-x-2">
-                    Follow Our Journey
-                    <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" viewBox="0 0 20 20" fill="currentColor">
-                        <path fill-rule="evenodd" d="M10.293 3.293a1 1 0 011.414 0l6 6a1 1 0 010 1.414l-6 6a1 1 0 01-1.414-1.414L14.586 11H3a1 1 0 110-2h11.586l-4.293-4.293a1 1 0 010-1.414z" clip-rule="evenodd" />
-                    </svg>
+        <footer class="contact-footer">
+            <h3>Support & Inquiries</h3>
+            <div class="social-links">
+                <a href="https://instagram.com" class="social-link">
+                    <i data-lucide="instagram" size="32"></i>
+                    <span>Instagram</span>
+                </a>
+                <a href="mailto:support@example.com" class="social-link">
+                    <i data-lucide="mail" size="32"></i>
+                    <span>Email Support</span>
                 </a>
             </div>
-        </div>
-
+        </footer>
     </div>
-</section>
-<section id="posts" class="py-24 px-6 relative">
-    <div class="max-w-7xl mx-auto">
-        
-        <div class="flex flex-col md:flex-row md:items-end justify-between mb-12 gap-4">
-            <div>
-                <h3 class="text-emerald-400 font-semibold tracking-widest uppercase text-sm mb-2">Feed</h3>
-                <h2 class="text-4xl md:text-5xl font-bold text-white">Latest Insights</h2>
-            </div>
-            <a href="https://www.instagram.com/themindword_/" target="_blank" class="text-gray-400 hover:text-emerald-400 transition-colors duration-300 flex items-center gap-2 group">
-                View Instagram 
-                <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 group-hover:translate-x-1 transition-transform" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3" />
-                </svg>
-            </a>
-        </div>
 
-        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-            
-            <div class="group relative bg-white/5 border border-white/10 rounded-3xl overflow-hidden hover:border-emerald-500/50 transition-all duration-500 cursor-pointer">
-                <div class="aspect-square overflow-hidden">
-                    <img src="https://images.unsplash.com/photo-1518531966227-96c6a9a737c3?auto=format&fit=crop&q=80&w=600" alt="Healing" class="w-full h-full object-cover transition duration-700 group-hover:scale-110 group-hover:rotate-2 opacity-80 group-hover:opacity-100">
-                </div>
-                <div class="p-6">
-                    <span class="text-emerald-400 text-xs font-bold uppercase tracking-tighter">Psychology</span>
-                    <h4 class="text-xl font-bold text-white mt-2 group-hover:text-emerald-300 transition-colors">The Art of Letting Go</h4>
-                    <p class="text-gray-400 mt-3 line-clamp-2">Healing isn't about forgetting; it's about remembering without the pain...</p>
-                </div>
-            </div>
-
-            <div class="group relative bg-white/5 border border-white/10 rounded-3xl overflow-hidden hover:border-emerald-500/50 transition-all duration-500 cursor-pointer lg:translate-y-6">
-                <div class="aspect-square overflow-hidden">
-                    <img src="https://images.unsplash.com/photo-1499209974431-9dac3adaf477?auto=format&fit=crop&q=80&w=600" alt="Growth" class="w-full h-full object-cover transition duration-700 group-hover:scale-110 group-hover:rotate-2 opacity-80 group-hover:opacity-100">
-                </div>
-                <div class="p-6">
-                    <span class="text-emerald-400 text-xs font-bold uppercase tracking-tighter">Mindset</span>
-                    <h4 class="text-xl font-bold text-white mt-2 group-hover:text-emerald-300 transition-colors">Growth in Silence</h4>
-                    <p class="text-gray-400 mt-3 line-clamp-2">Your loudest transformations often happen in your quietest moments...</p>
-                </div>
-            </div>
-
-            <div class="group relative bg-white/5 border border-white/10 rounded-3xl overflow-hidden hover:border-emerald-500/50 transition-all duration-500 cursor-pointer">
-                <div class="aspect-square overflow-hidden">
-                    <img src="https://images.unsplash.com/photo-1528716321680-815a8cdb8cbe?auto=format&fit=crop&q=80&w=600" alt="Perspective" class="w-full h-full object-cover transition duration-700 group-hover:scale-110 group-hover:rotate-2 opacity-80 group-hover:opacity-100">
-                </div>
-                <div class="p-6">
-                    <span class="text-emerald-400 text-xs font-bold uppercase tracking-tighter">Soul</span>
-                    <h4 class="text-xl font-bold text-white mt-2 group-hover:text-emerald-300 transition-colors">Shift Your Lens</h4>
-                    <p class="text-gray-400 mt-3 line-clamp-2">When you change the way you look at things, the things you look at change...</p>
-                </div>
-            </div>
-
-        </div>
-    </div>
-</section>
-<section id="reels" class="py-24 px-6 relative bg-black/20">
-    <div class="max-w-7xl mx-auto">
-        
-        <div class="text-center mb-16">
-            <h3 class="text-emerald-400 font-semibold tracking-[0.3em] uppercase text-sm mb-3">Immersive Experience</h3>
-            <h2 class="text-4xl md:text-5xl font-bold text-white">Daily Wisdom Reels</h2>
-            <div class="w-20 h-1 bg-emerald-500 mx-auto mt-6 rounded-full"></div>
-        </div>
-
-        <div class="grid grid-cols-2 md:grid-cols-4 gap-4 md:gap-8">
-            
-            <div class="group relative aspect-[9/16] bg-zinc-900 rounded-3xl overflow-hidden cursor-pointer border border-white/5 transition-all duration-500 hover:scale-[1.03] hover:shadow-[0_20px_50px_rgba(16,185,129,0.2)]">
-                <img src="https://images.unsplash.com/photo-1494173853739-c21f58b16055?auto=format&fit=crop&q=80&w=500" class="w-full h-full object-cover opacity-60 group-hover:opacity-80 transition-opacity" alt="Mindset Reel">
-                
-                <div class="absolute inset-0 flex items-center justify-center">
-                    <div class="w-14 h-14 bg-white/10 backdrop-blur-md rounded-full flex items-center justify-center border border-white/20 group-hover:bg-emerald-500 group-hover:border-emerald-400 transition-all duration-300">
-                        <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 text-white fill-current" viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg>
-                    </div>
-                </div>
-
-                <div class="absolute bottom-0 left-0 right-0 p-5 bg-gradient-to-t from-black/90 to-transparent">
-                    <p class="text-white font-medium text-sm md:text-base leading-tight">3 Signs you are actually healing...</p>
-                    <div class="flex items-center gap-2 mt-2">
-                        <span class="text-emerald-400 text-xs">12.5k views</span>
-                    </div>
-                </div>
-            </div>
-
-            <div class="group relative aspect-[9/16] bg-zinc-900 rounded-3xl overflow-hidden cursor-pointer border border-white/5 transition-all duration-500 hover:scale-[1.03] hover:shadow-[0_20px_50px_rgba(16,185,129,0.2)]">
-                <img src="https://images.unsplash.com/photo-1516533075015-a3838414c3ca?auto=format&fit=crop&q=80&w=500" class="w-full h-full object-cover opacity-60 group-hover:opacity-80 transition-opacity" alt="Growth Reel">
-                <div class="absolute inset-0 flex items-center justify-center">
-                    <div class="w-14 h-14 bg-white/10 backdrop-blur-md rounded-full flex items-center justify-center border border-white/20 group-hover:bg-emerald-500 group-hover:border-emerald-400 transition-all duration-300">
-                        <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 text-white fill-current" viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg>
-                    </div>
-                </div>
-                <div class="absolute bottom-0 left-0 right-0 p-5 bg-gradient-to-t from-black/90 to-transparent">
-                    <p class="text-white font-medium text-sm md:text-base leading-tight">The power of saying "No".</p>
-                    <div class="flex items-center gap-2 mt-2">
-                        <span class="text-emerald-400 text-xs">8.2k views</span>
-                    </div>
-                </div>
-            </div>
-
-            <div class="group relative aspect-[9/16] bg-zinc-900 rounded-3xl overflow-hidden cursor-pointer border border-white/5 transition-all duration-500 hover:scale-[1.03] hover:shadow-[0_20px_50px_rgba(16,185,129,0.2)]">
-                <img src="https://images.unsplash.com/photo-1502139173938-c782adfd2c00?auto=format&fit=crop&q=80&w=500" class="w-full h-full object-cover opacity-60 group-hover:opacity-80 transition-opacity" alt="Anxiety Reel">
-                <div class="absolute inset-0 flex items-center justify-center">
-                    <div class="w-14 h-14 bg-white/10 backdrop-blur-md rounded-full flex items-center justify-center border border-white/20 group-hover:bg-emerald-500 group-hover:border-emerald-400 transition-all duration-300">
-                        <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 text-white fill-current" viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg>
-                    </div>
-                </div>
-                <div class="absolute bottom-0 left-0 right-0 p-5 bg-gradient-to-t from-black/90 to-transparent">
-                    <p class="text-white font-medium text-sm md:text-base leading-tight">Stop overthinking tonight.</p>
-                    <div class="flex items-center gap-2 mt-2">
-                        <span class="text-emerald-400 text-xs">21k views</span>
-                    </div>
-                </div>
-            </div>
-
-            <div class="group relative aspect-[9/16] bg-zinc-900 rounded-3xl overflow-hidden cursor-pointer border border-white/5 transition-all duration-500 hover:scale-[1.03] hover:shadow-[0_20px_50px_rgba(16,185,129,0.2)]">
-                <img src="https://images.unsplash.com/photo-1474418397713-7ede21d49118?auto=format&fit=crop&q=80&w=500" class="w-full h-full object-cover opacity-60 group-hover:opacity-80 transition-opacity" alt="Peace Reel">
-                <div class="absolute inset-0 flex items-center justify-center">
-                    <div class="w-14 h-14 bg-white/10 backdrop-blur-md rounded-full flex items-center justify-center border border-white/20 group-hover:bg-emerald-500 group-hover:border-emerald-400 transition-all duration-300">
-                        <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 text-white fill-current" viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg>
-                    </div>
-                </div>
-                <div class="absolute bottom-0 left-0 right-0 p-5 bg-gradient-to-t from-black/90 to-transparent">
-                    <p class="text-white font-medium text-sm md:text-base leading-tight">Protecting your inner peace.</p>
-                    <div class="flex items-center gap-2 mt-2">
-                        <span class="text-emerald-400 text-xs">15k views</span>
-                    </div>
-                </div>
-            </div>
-
-        </div>
-    </div>
-</section>
-<section id="contact" class="py-24 px-6 relative overflow-hidden">
-    <div class="absolute top-0 right-0 w-96 h-96 bg-emerald-500/10 rounded-full blur-[120px] -z-10"></div>
-    <div class="absolute bottom-0 left-0 w-72 h-72 bg-emerald-500/5 rounded-full blur-[100px] -z-10"></div>
-
-    <div class="max-w-7xl mx-auto">
-        <div class="grid lg:grid-cols-5 gap-12">
-            
-            <div class="lg:col-span-2 space-y-10">
-                <div>
-                    <h3 class="text-emerald-400 font-semibold tracking-widest uppercase text-sm mb-3">Connect</h3>
-                    <h2 class="text-4xl md:text-5xl font-bold text-white leading-tight">Let's start a <br><span class="text-emerald-400">conversation.</span></h2>
-                    <p class="text-gray-400 mt-6 text-lg">Whether you have a question about mental health, collaboration, or just want to say hi, my inbox is always open.</p>
-                </div>
-
-                <div class="space-y-6">
-                    <div class="group flex items-center gap-5 p-5 bg-white/5 border border-white/10 rounded-2xl hover:border-emerald-500/50 transition-all duration-300 cursor-pointer">
-                        <div class="w-12 h-12 bg-emerald-500/20 rounded-xl flex items-center justify-center text-emerald-400 group-hover:bg-emerald-500 group-hover:text-black transition-all">
-                            <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" />
-                            </svg>
-                        </div>
-                        <div>
-                            <p class="text-gray-400 text-sm">Email me at</p>
-                            <p class="text-white font-semibold">hello@themindword.com</p>
-                        </div>
-                    </div>
-
-                    <div class="group flex items-center gap-5 p-5 bg-white/5 border border-white/10 rounded-2xl hover:border-emerald-500/50 transition-all duration-300 cursor-pointer">
-                        <div class="w-12 h-12 bg-emerald-500/20 rounded-xl flex items-center justify-center text-emerald-400 group-hover:bg-emerald-500 group-hover:text-black transition-all">
-                            <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
-                            </svg>
-                        </div>
-                        <div>
-                            <p class="text-gray-400 text-sm">Follow the Journey</p>
-                            <p class="text-white font-semibold">@themindword_</p>
-                        </div>
-                    </div>
-                </div>
-            </div>
-
-            <div class="lg:col-span-3">
-                <form class="bg-white/5 backdrop-blur-xl border border-white/10 p-8 md:p-10 rounded-3xl shadow-2xl space-y-6">
-                    <div class="grid md:grid-cols-2 gap-6">
-                        <div class="space-y-2">
-                            <label class="text-sm text-gray-400 ml-1">Full Name</label>
-                            <input type="text" placeholder="John Doe" class="w-full px-5 py-4 bg-black/40 border border-white/10 rounded-xl text-white focus:outline-none focus:border-emerald-500 transition-colors">
-                        </div>
-                        <div class="space-y-2">
-                            <label class="text-sm text-gray-400 ml-1">Email Address</label>
-                            <input type="email" placeholder="john@example.com" class="w-full px-5 py-4 bg-black/40 border border-white/10 rounded-xl text-white focus:outline-none focus:border-emerald-500 transition-colors">
-                        </div>
-                    </div>
-                    
-                    <div class="space-y-2">
-                        <label class="text-sm text-gray-400 ml-1">Subject</label>
-                        <select class="w-full px-5 py-4 bg-black/40 border border-white/10 rounded-xl text-white focus:outline-none focus:border-emerald-500 transition-colors appearance-none">
-                            <option>Collaboration</option>
-                            <option>Mental Health Inquiry</option>
-                            <option>Just Saying Hi</option>
-                        </select>
-                    </div>
-
-                    <div class="space-y-2">
-                        <label class="text-sm text-gray-400 ml-1">Message</label>
-                        <textarea rows="5" placeholder="How can we help you?" class="w-full px-5 py-4 bg-black/40 border border-white/10 rounded-xl text-white focus:outline-none focus:border-emerald-500 transition-colors resize-none"></textarea>
-                    </div>
-
-                    <button class="w-full py-4 bg-emerald-500 hover:bg-emerald-400 text-black font-bold rounded-xl transition-all duration-300 transform hover:scale-[1.02] active:scale-95 shadow-lg shadow-emerald-500/20 cursor-pointer">
-                        Send Message
-                    </button>
-                </form>
-            </div>
-
-        </div>
-    </div>
-</section>
-
-<footer class="py-10 text-center border-t border-white/5">
-    <p class="text-gray-500 text-sm">© 2024 The Mind Word. All rights reserved.</p>
-</footer>
     <script>
-        const menuBtn = document.getElementById('menu-btn');
-        const mobileMenu = document.getElementById('mobile-menu');
-        const menuIcon = document.getElementById('menu-icon');
+        // Initialize Lucide Icons
+        lucide.createIcons();
 
-        menuBtn.addEventListener('click', () => {
-            const isHidden = mobileMenu.classList.contains('hidden');
-            
-            if (isHidden) {
-                mobileMenu.classList.remove('hidden');
-                // Small timeout to allow transition to trigger
-                setTimeout(() => {
-                    mobileMenu.classList.add('opacity-100', 'translate-y-0');
-                    mobileMenu.classList.remove('opacity-0', 'translate-y-[-20px]');
-                }, 10);
-                menuIcon.innerHTML = '<path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" />';
-            } else {
-                mobileMenu.classList.add('opacity-0', 'translate-y-[-20px]');
-                mobileMenu.classList.remove('opacity-100', 'translate-y-0');
-                setTimeout(() => {
-                    mobileMenu.classList.add('hidden');
-                }, 300);
-                menuIcon.innerHTML = '<path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16m-7 6h7" />';
-            }
+        // Simple Fade-in animation on scroll
+        const observerOptions = { threshold: 0.1 };
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.style.opacity = "1";
+                    entry.target.style.transform = "translateY(0)";
+                }
+            });
+        }, observerOptions);
+
+        document.querySelectorAll('.section-card').forEach(card => {
+            card.style.opacity = "0";
+            card.style.transform = "translateY(20px)";
+            card.style.transition = "all 0.6s ease-out";
+            observer.observe(card);
         });
     </script>
 </body>
 </html>
-
